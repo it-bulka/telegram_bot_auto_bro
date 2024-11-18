@@ -1,0 +1,19 @@
+{
+  "name": "telegram_bot_test_auto_bro",
+  "version": "1.0.0",
+  "description": "Telegram bot for renting auto",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "build": "node index.js"
+  },
+  "author": "i.it.bulka@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
