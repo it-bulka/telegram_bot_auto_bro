@@ -17,3 +17,9 @@
  * @property {number[]} [msgsToDelete]
  */
 
+/**
+ * @typedef {Object} Currency
+ * @property {string} currency
+ * @property {string} code
+ * @property {number} mid
+ */

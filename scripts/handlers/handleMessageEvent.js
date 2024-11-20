@@ -46,11 +46,12 @@ const handleMessageEvent = async (bot, chatData) => {
         leftManualMode(userId)
         await setStartInfo(bot, chatId, username)
         break
+      // TODO: distinguish: COMMAND_CURRENCY_RATES = rates from bot owner (no yet); COMMAND_CBR = from bank (already written)
       case COMMAND_CURRENCY_RATES:
+      case COMMAND_CBR:
         leftManualMode(userId)
         await sendCurrencyRates(bot, chatId)
         break
-      case COMMAND_CBR:
       case COMMAND_SETTING_SERVICE:
         leftManualMode(userId)
         await sendConstraints(bot, chatId)

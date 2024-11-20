@@ -1,0 +1,17 @@
+[
+  {
+    "currency": "dolar amerykański",
+    "code": "USD",
+    "mid": 4.112
+  },
+  {
+    "currency": "euro",
+    "code": "EUR",
+    "mid": 4.3404
+  },
+  {
+    "currency": "yuan renminbi (Chiny)",
+    "code": "CNY",
+    "mid": 0.5674
+  }
+]

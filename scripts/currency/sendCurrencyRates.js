@@ -1,23 +1,29 @@
 const { convertIntoCurrencyLook } = require("../utils/convertIntoCurrencyLook");
 const { currency_rate_keyboard } = require('../keyboard/inlineKeyboard')
+const { getOfficialCurrencyRates } = require('./getOfficialCurrencyRates')
+
+const getConvertedRatesText = async () => {
+  const rates = await getOfficialCurrencyRates()
+
+  const convertedRatesText = rates.map((item) => {
+    const currency = item.code
+    const rate = convertIntoCurrencyLook(item.mid)
+    return `${currency}  ${rate}`
+  })
+
+  return convertedRatesText.join('\n')
+}
 /**
  * Get markdown for currency rates massage
- * @return {string}
+ * @return {Promise<string>}
  */
-const getMarkdownForCurrencyRates = () => {
-  // TODO: get rates from site
-  const UKR = convertIntoCurrencyLook(4454545)
-  const KRW = convertIntoCurrencyLook(456422)
-  const CNY = convertIntoCurrencyLook(782255)
-  const USD = convertIntoCurrencyLook(95335)
+const getMarkdownForCurrencyRates = async () => {
+  const rates = await getConvertedRatesText()
 
   const markdown = `
-Актуальний курс оплати:  
+Курс Центрального банку Польщі:  
 
-UKR = ${UKR}
-KRW = ${KRW}
-CNY = ${CNY}
-USD = ${USD}
+${rates}
   `
 
   return markdown
@@ -30,7 +36,7 @@ USD = ${USD}
  * @return {Promise<void>}
  */
 const sendCurrencyRates = async (bot, chatId) => {
-  const markdown = getMarkdownForCurrencyRates()
+  const markdown = await getMarkdownForCurrencyRates()
   await bot.sendMessage(chatId, markdown, {
     reply_markup: JSON.stringify({
       inline_keyboard: currency_rate_keyboard
